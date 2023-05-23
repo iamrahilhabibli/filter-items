@@ -10,14 +10,21 @@ minprice.addEventListener("change", (e) => {
   const maxPriceValue = parseInt(maxprice.value);
 
   if (minPriceValue > maxPriceValue) {
-    minprice.value = maxPriceValue;
-    minSpan.innerText = maxPriceValue;
+    minprice.value = maxPriceValue - 1;
+    minSpan.innerText = maxPriceValue - 1;
+    console.log(maxPriceValue);
   } else {
     minSpan.innerText = minPriceValue;
   }
 });
 
-maxprice.addEventListener("change", (e) => {});
+maxprice.addEventListener("change", (e) => {
+  const maxPriceValue = parseInt(e.target.value);
+  const minPriceValue = parseInt(minprice.value);
+
+  if (maxPriceValue < minPriceValue) {
+  }
+});
 
 function renderApartments() {
   apartmentsContainer.innerHTML = "";

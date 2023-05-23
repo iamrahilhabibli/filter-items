@@ -10,29 +10,31 @@ const maxarea = document.querySelector("#maxarea");
 const minAreaSpan = document.querySelector(".minAreaSpan");
 const maxAreaSpan = document.querySelector(".maxAreaSpan");
 
-minprice.addEventListener("change", (e) => {
+minprice.addEventListener("input", (e) => {
   const minPriceValue = parseInt(e.target.value);
   const maxPriceValue = parseInt(maxprice.value);
 
   if (minPriceValue > maxPriceValue) {
-    minprice.value = maxPriceValue - 1;
-    minSpan.innerText = maxPriceValue - 1;
-    console.log(maxPriceValue);
+    minprice.value = maxPriceValue;
+    minSpan.textContent = maxPriceValue;
   } else {
-    minSpan.innerText = minPriceValue;
+    minSpan.textContent = minPriceValue;
   }
+  priceRenderApartments();
 });
 
-maxprice.addEventListener("change", (e) => {
+maxprice.addEventListener("input", (e) => {
   const maxPriceValue = parseInt(e.target.value);
   const minPriceValue = parseInt(minprice.value);
 
   if (maxPriceValue < minPriceValue) {
-    maxprice.value = minPriceValue + 1;
-    maxSpan.innerText = minPriceValue + 1;
+    maxprice.value = minPriceValue;
+    maxSpan.textContent = minPriceValue;
   } else {
-    maxSpan.innerText = maxPriceValue;
+    maxSpan.textContent = maxPriceValue;
   }
+
+  priceRenderApartments();
 });
 
 minarea.addEventListener("change", (e) => {
@@ -95,6 +97,25 @@ const roomCheckboxes = document.querySelectorAll(
 roomCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", renderApartments);
 });
+
+function priceRenderApartments() {
+  apartmentsContainer.innerHTML = "";
+
+  const minPrice = parseInt(minprice.value);
+  const maxPrice = parseInt(maxprice.value);
+
+  if (minPrice <= maxPrice) {
+    const filteredApartments = apartments.filter((apartment) => {
+      return apartment.price >= minPrice && apartment.price <= maxPrice;
+    });
+
+    filteredApartments.forEach((apartment) => {
+      const apartmentCard = generateApartment(apartment);
+      apartmentsContainer.appendChild(apartmentCard);
+    });
+  }
+}
+priceRenderApartments();
 
 function generateApartment(apartments) {
   const card = document.createElement("div");

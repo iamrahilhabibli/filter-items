@@ -159,6 +159,34 @@ function areaRenderApartments() {
   }
 }
 
+function renderCustomSearch() {
+  apartmentsContainer.innerHTML = "";
+
+  const selectedRooms = [
+    ...document.querySelectorAll(
+      '.filter__items input[type="checkbox"]:checked'
+    ),
+  ].map((checkbox) => parseInt(checkbox.id));
+
+  const minPrice = parseInt(minprice.value);
+  const maxPrice = parseInt(maxprice.value);
+  const minArea = parseInt(minarea.value);
+  const maxArea = parseInt(maxarea.value);
+
+  const filteredApartments = apartments.filter(
+    (apartment) =>
+      selectedRooms.includes(apartment.rooms) &&
+      apartment.price >= minPrice &&
+      apartment.price <= maxPrice &&
+      apartment.area >= minArea &&
+      apartment.area <= maxArea
+  );
+
+  filteredApartments.forEach((apartment) => {
+    const apartmentCard = generateApartment(apartment);
+    apartmentsContainer.appendChild(apartmentCard);
+  });
+}
 renderAllApartments();
 
 function generateApartment(apartments) {

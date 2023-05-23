@@ -44,6 +44,10 @@ function renderApartments() {
       '.filter__items input[type="checkbox"]:checked'
     ),
   ].map((checkbox) => parseInt(checkbox.id));
+  console.log(selectedRooms);
+  if (selectedRooms.length == 0) {
+    renderAllApartments();
+  }
 
   const filteredApartments = apartments.filter((apartment) =>
     selectedRooms.includes(apartment.rooms)

@@ -10,7 +10,8 @@ const maxarea = document.querySelector("#maxarea");
 const minAreaSpan = document.querySelector(".minAreaSpan");
 const maxAreaSpan = document.querySelector(".maxAreaSpan");
 
-const body = document.querySelector("body");
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const resetBtn = document.querySelector(".reset");
 
 minprice.addEventListener("input", (e) => {
   const minPriceValue = parseInt(e.target.value);
@@ -62,6 +63,13 @@ maxarea.addEventListener("change", (e) => {
     maxAreaSpan.innerText = maxAreaValue;
   }
   areaRenderApartments();
+});
+
+resetBtn.addEventListener("click", () => {
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = false;
+  });
+  renderAllApartments();
 });
 
 function renderAllApartments() {

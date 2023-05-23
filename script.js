@@ -9,11 +9,30 @@ minprice.addEventListener("change", (e) => {
 });
 
 function renderApartments() {
-  apartments.forEach((apartment) => {
+  apartmentsContainer.innerHTML = "";
+
+  const selectedRooms = [
+    ...document.querySelectorAll(
+      '.filter__items input[type="checkbox"]:checked'
+    ),
+  ].map((checkbox) => parseInt(checkbox.id));
+
+  const filteredApartments = apartments.filter((apartment) =>
+    selectedRooms.includes(apartment.rooms)
+  );
+
+  filteredApartments.forEach((apartment) => {
     const apartmentCard = generateApartment(apartment);
     apartmentsContainer.appendChild(apartmentCard);
   });
 }
+
+const roomCheckboxes = document.querySelectorAll(
+  '.filter__items input[type="checkbox"]'
+);
+roomCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", renderApartments);
+});
 
 function generateApartment(apartments) {
   const card = document.createElement("div");

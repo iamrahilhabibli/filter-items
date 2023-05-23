@@ -71,4 +71,28 @@ const apartments = [
     area: 108.2,
     rooms: 3,
   },
+  {
+    id: 13,
+    price: 390000,
+    area: 260,
+    rooms: 5,
+  },
+  {
+    id: 14,
+    price: 550000,
+    area: 218,
+    rooms: 4,
+  },
+  {
+    id: 15,
+    price: 232000,
+    area: 118,
+    rooms: 3,
+  },
+  {
+    id: 16,
+    price: 40000,
+    area: 30.2,
+    rooms: 1,
+  },
 ];

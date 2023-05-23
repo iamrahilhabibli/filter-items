@@ -29,6 +29,12 @@ maxprice.addEventListener("change", (e) => {
     maxSpan.innerText = maxPriceValue;
   }
 });
+function renderAllApartments() {
+  apartments.forEach((apartment) => {
+    const apartmentCard = generateApartment(apartment);
+    apartmentsContainer.appendChild(apartmentCard);
+  });
+}
 
 function renderApartments() {
   apartmentsContainer.innerHTML = "";
@@ -66,4 +72,4 @@ function generateApartment(apartments) {
 </div>`;
   return card;
 }
-renderApartments();
+renderAllApartments();

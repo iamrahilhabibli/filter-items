@@ -10,6 +10,8 @@ const maxarea = document.querySelector("#maxarea");
 const minAreaSpan = document.querySelector(".minAreaSpan");
 const maxAreaSpan = document.querySelector(".maxAreaSpan");
 
+const body = document.querySelector("body");
+
 minprice.addEventListener("input", (e) => {
   const minPriceValue = parseInt(e.target.value);
   const maxPriceValue = parseInt(maxprice.value);
@@ -46,6 +48,7 @@ minarea.addEventListener("change", (e) => {
   } else {
     minAreaSpan.innerText = minAreaValue;
   }
+  areaRenderApartments();
 });
 
 maxarea.addEventListener("change", (e) => {
@@ -58,6 +61,7 @@ maxarea.addEventListener("change", (e) => {
   } else {
     maxAreaSpan.innerText = maxAreaValue;
   }
+  areaRenderApartments();
 });
 
 function renderAllApartments() {
@@ -103,19 +107,35 @@ function priceRenderApartments() {
 
   const minPrice = parseInt(minprice.value);
   const maxPrice = parseInt(maxprice.value);
-
   if (minPrice <= maxPrice) {
-    const filteredApartments = apartments.filter((apartment) => {
+    const priceFilteredApartments = apartments.filter((apartment) => {
       return apartment.price >= minPrice && apartment.price <= maxPrice;
     });
 
-    filteredApartments.forEach((apartment) => {
+    priceFilteredApartments.forEach((apartment) => {
       const apartmentCard = generateApartment(apartment);
       apartmentsContainer.appendChild(apartmentCard);
     });
   }
 }
-priceRenderApartments();
+function areaRenderApartments() {
+  apartmentsContainer.innerHTML = "";
+
+  const minArea = parseInt(minarea.value);
+  const maxArea = parseInt(maxarea.value);
+
+  if (minArea <= maxArea) {
+    const areaFilteredApartments = apartments.filter((apartment) => {
+      return apartment.area >= minArea && apartment.area <= maxArea;
+    });
+    areaFilteredApartments.forEach((apartment) => {
+      const apartmentCard = generateApartment(apartment);
+      apartmentsContainer.appendChild(apartmentCard);
+    });
+  }
+}
+
+renderAllApartments();
 
 function generateApartment(apartments) {
   const card = document.createElement("div");
@@ -127,4 +147,3 @@ function generateApartment(apartments) {
 </div>`;
   return card;
 }
-renderAllApartments();

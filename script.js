@@ -6,11 +6,13 @@ const minSpan = document.querySelector(".minSpan");
 const maxSpan = document.querySelector(".maxSpan");
 
 minprice.addEventListener("change", (e) => {
-  minSpan.innerText = e.target.value;
+  const minPriceValue = parseInt(e.target.value);
+  const maxPriceValue = maxprice.value;
+  console.log(maxprice.value);
 });
-maxprice.addEventListener("change", (e) => {
-  maxSpan.innerText = e.target.value;
-});
+
+maxprice.addEventListener("change", (e) => {});
+
 function renderApartments() {
   apartmentsContainer.innerHTML = "";
 
@@ -19,7 +21,6 @@ function renderApartments() {
       '.filter__items input[type="checkbox"]:checked'
     ),
   ].map((checkbox) => parseInt(checkbox.id));
-  console.log(selectedRooms);
 
   const filteredApartments = apartments.filter((apartment) =>
     selectedRooms.includes(apartment.rooms)

@@ -13,6 +13,13 @@ const maxAreaSpan = document.querySelector(".maxAreaSpan");
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 const resetBtn = document.querySelector(".reset");
 
+const initialMinPrice = parseInt(minprice.defaultValue);
+const initialMaxPrice = parseInt(maxprice.defaultValue);
+const initialMinArea = parseInt(minarea.defaultValue);
+const initialMaxArea = parseInt(maxarea.defaultValue);
+
+console.log(initialMaxPrice);
+console.log(initialMinPrice);
 minprice.addEventListener("input", (e) => {
   const minPriceValue = parseInt(e.target.value);
   const maxPriceValue = parseInt(maxprice.value);
@@ -69,6 +76,15 @@ resetBtn.addEventListener("click", () => {
   checkboxes.forEach((checkbox) => {
     checkbox.checked = false;
   });
+  minprice.value = initialMinPrice;
+  minSpan.innerText = initialMinPrice;
+  maxprice.value = initialMaxPrice;
+  maxSpan.innerText = initialMaxPrice;
+
+  minarea.value = initialMinArea;
+  minAreaSpan.innerText = initialMinArea;
+  maxarea.value = initialMaxArea;
+  maxAreaSpan.innerText = initialMaxArea;
   renderAllApartments();
 });
 

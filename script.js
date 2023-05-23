@@ -5,6 +5,11 @@ const maxprice = document.querySelector("#maxprice");
 const minSpan = document.querySelector(".minSpan");
 const maxSpan = document.querySelector(".maxSpan");
 
+const minarea = document.querySelector("#minarea");
+const maxarea = document.querySelector("#maxarea");
+const minAreaSpan = document.querySelector(".minAreaSpan");
+const maxAreaSpan = document.querySelector(".maxAreaSpan");
+
 minprice.addEventListener("change", (e) => {
   const minPriceValue = parseInt(e.target.value);
   const maxPriceValue = parseInt(maxprice.value);
@@ -29,6 +34,7 @@ maxprice.addEventListener("change", (e) => {
     maxSpan.innerText = maxPriceValue;
   }
 });
+
 function renderAllApartments() {
   apartments.forEach((apartment) => {
     const apartmentCard = generateApartment(apartment);
@@ -45,6 +51,7 @@ function renderApartments() {
     ),
   ].map((checkbox) => parseInt(checkbox.id));
   console.log(selectedRooms);
+
   if (selectedRooms.length == 0) {
     renderAllApartments();
   }

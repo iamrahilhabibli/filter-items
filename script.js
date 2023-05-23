@@ -23,6 +23,10 @@ maxprice.addEventListener("change", (e) => {
   const minPriceValue = parseInt(minprice.value);
 
   if (maxPriceValue < minPriceValue) {
+    maxprice.value = minPriceValue + 1;
+    maxSpan.innerText = minPriceValue + 1;
+  } else {
+    maxSpan.innerText = maxPriceValue;
   }
 });
 

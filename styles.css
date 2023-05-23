@@ -1,0 +1,30 @@
+.filter__items {
+  width: 300px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.main__container {
+  display: flex;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  font-weight: 600;
+  row-gap: 60px;
+  height: 300px;
+  width: 300px;
+  background-color: beige;
+  color: black;
+}
+.apartments__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px;
+}

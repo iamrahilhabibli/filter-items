@@ -7,8 +7,14 @@ const maxSpan = document.querySelector(".maxSpan");
 
 minprice.addEventListener("change", (e) => {
   const minPriceValue = parseInt(e.target.value);
-  const maxPriceValue = maxprice.value;
-  console.log(maxprice.value);
+  const maxPriceValue = parseInt(maxprice.value);
+
+  if (minPriceValue > maxPriceValue) {
+    minprice.value = maxPriceValue;
+    minSpan.innerText = maxPriceValue;
+  } else {
+    minSpan.innerText = minPriceValue;
+  }
 });
 
 maxprice.addEventListener("change", (e) => {});

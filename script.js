@@ -35,6 +35,29 @@ maxprice.addEventListener("change", (e) => {
   }
 });
 
+minarea.addEventListener("change", (e) => {
+  const minAreaValue = parseInt(e.target.value);
+  const maxAreaValue = parseInt(maxarea.value);
+  if (minAreaValue > maxAreaValue) {
+    minarea.value = maxAreaValue - 1;
+    minAreaSpan.innerText = maxAreaValue - 1;
+  } else {
+    minAreaSpan.innerText = minAreaValue;
+  }
+});
+
+maxarea.addEventListener("change", (e) => {
+  const maxAreaValue = parseInt(e.target.value);
+  const minAreaValue = parseInt(minarea.value);
+
+  if (minAreaValue > maxAreaValue) {
+    maxarea.value = minAreaValue + 1;
+    maxAreaSpan.innerText = minAreaValue + 1;
+  } else {
+    maxAreaSpan.innerText = maxAreaValue;
+  }
+});
+
 function renderAllApartments() {
   apartments.forEach((apartment) => {
     const apartmentCard = generateApartment(apartment);
